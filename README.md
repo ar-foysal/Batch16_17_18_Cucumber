@@ -22,7 +22,6 @@ This project showcases the synergy between two popular frameworks: Cucumber and 
 
 ``` 
 https://github.com/ar-foysal/Batch16_17_18_Cucumber.git 
-
 ```
 - import this project as a maven project in your favorite IDE
 
