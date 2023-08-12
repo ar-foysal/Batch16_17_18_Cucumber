@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 import pages.LoginPage;
 import pages.ProductPage;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 import static utilities.DriverSetup.getDriver;
 
 public class LoginStep {
@@ -33,5 +33,23 @@ public class LoginStep {
     @Then("user successfully logged in")
     public void userSuccessfullyLoggedIn() {
         assertEquals(getDriver().getCurrentUrl(), productPage.product_page_url);
+    }
+
+    @When("user input valid {string} and {string}")
+    public void userInputValidAnd(String username, String password) {
+        loginPage.writeOnByLocator(loginPage.username_input_field, username);
+        loginPage.writeOnByLocator(loginPage.password_input_field, password);
+    }
+
+    @Then("user should not be login successfully")
+    public void userShouldNotBeLoginSuccessfully() {
+
+        assertNotEquals(getDriver().getCurrentUrl(),productPage.product_page_url);
+        assertEquals(getDriver().getCurrentUrl(), loginPage.login_page_url);
+    }
+
+    @And("user should see an {string}")
+    public void userShouldSeeAn(String error_message) {
+        assertEquals(loginPage.getElementText(loginPage.error_msg_locator), error_message);
     }
 }
